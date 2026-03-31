@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Flashcards</title>
+    <meta
+      name="description"
+      content="Interactive flashcards for learning basic JavaScript concepts."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="flashcards.css" />
+  </head>
+  <body>
+    <header class="fc-header">
+      <div class="container fc-header-wrap">
+        <a class="fc-brand" href="index.html" aria-label="Back to portfolio">← Portfolio</a>
+        <div class="fc-meta">
+          <h1>Build Your Flashcards</h1>
+        </div>
+      </div>
+    </header>
+
+    <main class="container fc-main">
+      <section class="flashcards-section" aria-label="Flashcards">
+        <div class="fc-session-top" aria-label="Study controls">
+          <div class="fc-count" id="card-count" aria-live="polite"></div>
+          <div class="fc-progress" aria-label="Progress tracking">
+            <div class="fc-progress-top">
+              <span id="progress-label" class="fc-progress-label">0 mastered • 0 stuck</span>
+              <span id="progress-percent" class="fc-progress-percent">0%</span>
+            </div>
+            <div
+              id="progress-track"
+              class="fc-progress-track"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <div id="progress-bar" class="fc-progress-bar"></div>
+            </div>
+          </div>
+          <button type="button" id="shuffle-deck" class="btn btn-ghost fc-shuffle-btn">
+            Shuffle Deck 🎲
+          </button>
+          <div id="grade-status" class="fc-grade-status" role="status" aria-live="polite"></div>
+        </div>
+        <div id="flashcard-grid" class="flashcard-grid"></div>
+      </section>
+
+      <section class="form-section" aria-label="Add flashcard form">
+        <h2>Add a custom flashcard</h2>
+
+        <form id="card-form">
+          <div class="field">
+            <label for="front-input">Front</label>
+            <input
+              id="front-input"
+              name="front"
+              type="text"
+              required
+              maxlength="220"
+              placeholder="e.g. What does === check?"
+            />
+          </div>
+
+          <div class="field">
+            <label for="back-input">Back</label>
+            <textarea
+              id="back-input"
+              name="back"
+              required
+              maxlength="700"
+              rows="4"
+              placeholder="e.g. It compares value AND type (no coercion)."
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Add flashcard</button>
+            <button type="button" id="clear-form" class="btn btn-ghost">Clear</button>
+          </div>
+
+          <p class="form-note" id="form-error" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <script src="flashcards.js"></script>
+  </body>
+</html>
+
