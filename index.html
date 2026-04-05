@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & OpenGraph Optimization -->
+  <title>Ling Fung Kwan | Quantitative Researcher & ML Engineer</title>
+  <meta name="description" content="Portfolio of Ling Fung Kwan. Specializing in Neural SDEs, Graph Machine Learning, and High-Frequency Execution Engines.">
+  <meta name="keywords" content="Quantitative Finance, Machine Learning, Physics, Mathematics, CUHK, PyTorch, Neural SDE, HFT">
+  <meta property="og:title" content="Ling Fung Kwan | Quantitative Researcher">
+  <meta property="og:description" content="Building high-fidelity models at the intersection of Stochastic Calculus and Deep Learning.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- KaTeX for Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            quant: {
+              black: '#09090b',     /* Zinc 950 - Deep Terminal Black */
+              dark: '#18181b',      /* Zinc 900 */
+              border: '#27272a',    /* Zinc 800 */
+              accent: '#3b82f6',    /* Blue 500 */
+              text: '#f4f4f5',      /* Zinc 100 */
+              muted: '#a1a1aa'      /* Zinc 400 */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* High-Performance Animations */
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up { animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    
+    /* Architectural Elements */
+    .glass { 
+      background: rgba(255, 255, 255, 0.85); 
+      backdrop-filter: blur(12px); 
+      -webkit-backdrop-filter: blur(12px); 
+      border-bottom: 1px solid rgba(0,0,0,0.05); 
+    }
+    .dark .glass { 
+      background: rgba(9, 9, 11, 0.85); 
+      border-bottom: 1px solid rgba(255,255,255,0.05); 
+    }
+
+    /* SVG Mathematical Grid Pattern */
+    .bg-grid {
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    }
+    .dark .bg-grid {
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    .katex { font-size: 1.05em; }
+    
+    /* Custom Scrollbar for Terminal Feel */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 4px; }
+    .dark ::-webkit-scrollbar-thumb { background: #3f3f46; }
+    .dark ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-quant-black dark:text-quant-text font-sans selection:bg-quant-accent selection:text-white transition-colors duration-300">
+
+  <!-- Fixed Glassmorphism Navigation -->
+  <nav class="fixed top-0 w-full z-50 glass transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="font-bold tracking-tighter text-xl flex items-center gap-2">
+        <i data-lucide="function-square" class="w-5 h-5 text-quant-accent"></i>
+        LFK<span class="text-quant-accent">.</span>
+      </a>
+      <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide uppercase">
+        <a href="#research" class="hover:text-quant-accent transition-colors">Research</a>
+        <a href="#matrix" class="hover:text-quant-accent transition-colors">Skill Matrix</a>
+        <a href="#experience" class="hover:text-quant-accent transition-colors">Experience</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button id="themeToggle" class="p-2 rounded-md hover:bg-slate-200 dark:hover:bg-quant-dark transition-colors" aria-label="Toggle Theme">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="mailto:percykwanlf@gmail.com" class="text-sm font-mono border border-quant-accent text-quant-accent dark:text-white px-4 py-1.5 rounded hover:bg-quant-accent hover:text-white transition-all">
+          Execute Contact
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center pt-20 bg-grid overflow-hidden">
+    <!-- Ambient Stochastic Glow (Dark Mode) -->
+    <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-quant-accent/10 rounded-full blur-[120px] pointer-events-none hidden dark:block"></div>
+    
+    <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 border border-quant-accent/30 bg-quant-accent/10 rounded-full text-quant-accent font-mono text-xs font-semibold mb-6 animate-fade-up">
+          <i data-lucide="microscope" class="w-3 h-3"></i> CUHK Mathematics & Physics
+        </div>
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-up delay-100">
+          Optimizing <br>Stochastic Models & <br>Non-Linear Dynamics.
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-600 dark:text-quant-muted leading-relaxed mb-10 animate-fade-up delay-200 font-light">
+          Ling Fung Kwan builds high-fidelity computational architectures at the intersection of <strong class="font-semibold text-slate-900 dark:text-white">Quantitative Finance</strong> and <strong class="font-semibold text-slate-900 dark:text-white">Deep Learning</strong>.
+        </p>
+        <div class="flex flex-wrap gap-4 animate-fade-up delay-200">
+          <a href="#research" class="flex items-center gap-2 bg-quant-accent px-6 py-3 rounded-md font-bold text-white hover:opacity-90 transition-all shadow-lg shadow-blue-500/20">
+            <i data-lucide="line-chart" class="w-4 h-4"></i> Explore Research
+          </a>
+          <a href="https://github.com/percykwanlf" target="_blank" rel="noopener" class="flex items-center gap-2 border border-slate-300 dark:border-quant-border px-6 py-3 rounded-md font-bold hover:bg-slate-100 dark:hover:bg-quant-dark transition-all">
+            <i data-lucide="github" class="w-4 h-4"></i> GitHub Archive
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- High-Impact Research -->
+  <section id="research" class="py-24 border-y border-slate-200 dark:border-quant-border bg-white dark:bg-quant-black transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-12 animate-on-scroll">
+        <i data-lucide="flask-conical" class="w-8 h-8 text-quant-accent"></i>
+        <h2 class="text-3xl font-bold">Research & Implementations</h2>
+      </div>
+      
+      <div class="space-y-8">
+        <!-- Project 1: Neural SDE -->
+        <article class="group grid md:grid-cols-12 gap-8 items-start border border-slate-200 dark:border-quant-border p-8 rounded-xl bg-slate-50 dark:bg-quant-dark/50 hover:border-quant-accent dark:hover:border-quant-accent transition-all animate-on-scroll">
+          <div class="md:col-span-4">
+            <div class="flex items-center gap-2 text-xs font-mono text-quant-accent mb-3 uppercase tracking-wider">
+              <i data-lucide="cpu" class="w-3 h-3"></i> 2026 | Lead Developer
+            </div>
+            <h3 class="text-2xl font-bold mb-4 leading-tight">Neural SDE & Rough Path Execution Engine</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-white dark:bg-quant-black text-[10px] px-2 py-1 rounded border border-slate-200 dark:border-quant-border font-mono text-slate-600 dark:text-quant-muted">PyTorch</span>
+              <span class="bg-white dark:bg-quant-black text-[10px] px-2 py-1 rounded border border-slate-200 dark:border-quant-border font-mono text-slate-600 dark:text-quant-muted">ArcticDB</span>
+              <span class="bg-white dark:bg-quant-black text-[10px] px-2 py-1 rounded border border-slate-200 dark:border-quant-border font-mono text-slate-600 dark:text-quant-muted">Rough Paths</span>
+            </div>
+          </div>
+          <div class="md:col-span-8 text-slate-600 dark:text-quant-muted leading-relaxed text-sm space-y-4">
+            <p><strong class="text-slate-900 dark:text-white font-medium">Objective:</strong> Filter non-stationary noise from high-velocity MNQ Futures tick data.</p>
+            <p>Engineered an HFT engine utilizing <strong class="text-slate-900 dark:text-white font-medium">Path Signatures</strong> to extract translation-invariant geometric features. Implemented a Neural SDE architecture to distinguish diffusive market noise from genuine phase transitions, identifying regime shifts between diffusion and jump-diffusion states in real-time.</p>
+            <p>Derived optimal capital allocation policies by solving the <strong class="text-slate-900 dark:text-white font-medium">Hamilton-Jacobi-Bellman (HJB) equation</strong>, enabling dynamic leverage scaling responsive to volatility regimes rather than static look-back windows.</p>
+          </div>
+        </article>
+
+        <!-- Project 2: GNN -->
+        <article class="group grid md:grid-cols-12 gap-8 items-start border border-slate-200 dark:border-quant-border p-8 rounded-xl bg-slate-50 dark:bg-quant-dark/50 hover:border-quant-accent dark:hover:border-quant-accent transition-all animate-on-scroll">
+          <div class="md:col-span-4">
+            <div class="flex items-center gap-2 text-xs font-mono text-quant-accent mb-3 uppercase tracking-wider">
+              <i data-lucide="network" class="w-3 h-3"></i> 2025 | Research Assistant
+            </div>
+            <h3 class="text-2xl font-bold mb-4 leading-tight">GNN for Higgs Separation</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-white dark:bg-quant-black text-[10px] px-2 py-1 rounded border border-slate-200 dark:border-quant-border font-mono text-slate-600 dark:text-quant-muted">Graph ML</span>
+              <span class="bg-white dark:bg-quant-black text-[10px] px-2 py-1 rounded border border-slate-200 dark:border-quant-border font-mono text-slate-600 dark:text-quant-muted">ATLAS Run-2</span>
+            </div>
+          </div>
+          <div class="md:col-span-8 text-slate-600 dark:text-quant-muted leading-relaxed text-sm space-y-4">
+            <p><strong class="text-slate-900 dark:text-white font-medium">Objective:</strong> Achieve permutation-invariant learning for high-energy physics classification.</p>
+            <p>Developed a custom GNN architecture to classify $$H \rightarrow WW^*$$ events using simulated ATLAS Run-2 data. Modeled collision products as graphs, designing physics-motivated node and edge features to represent kinematic variables.</p>
+            <p>Significantly improved signal-to-background separation efficiency while mitigating model-induced bias by strictly preserving angular distribution physical consistency across high-dimensional feature spaces.</p>
+          </div>
+        </article>
+
+        <!-- Project 3: EMD Momentum -->
+        <article class="group grid md:grid-cols-12 gap-8 items-start border border-slate-200 dark:border-quant-border p-8 rounded-xl bg-slate-50 dark:bg-quant-dark/50 hover:border-quant-accent dark:hover:border-quant-accent transition-all animate-on-scroll">
+          <div class="md:col-span-4">
+            <div class="flex items-center gap-2 text-xs font-mono text-quant-accent mb-3 uppercase tracking-wider">
+              <i data-lucide="activity" class="w-3 h-3"></i> 2024-2025 | Lead Developer
+            </div>
+            <h3 class="text-2xl font-bold mb-4 leading-tight">EMD-Enhanced Momentum</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-white dark:bg-quant-black text-[10px] px-2 py-1 rounded border border-slate-200 dark:border-quant-border font-mono text-slate-600 dark:text-quant-muted">Python</span>
+              <span class="bg-white dark:bg-quant-black text-[10px] px-2 py-1 rounded border border-slate-200 dark:border-quant-border font-mono text-slate-600 dark:text-quant-muted">Signal Processing</span>
+            </div>
+          </div>
+          <div class="md:col-span-8 text-slate-600 dark:text-quant-muted leading-relaxed text-sm space-y-4">
+            <p><strong class="text-slate-900 dark:text-white font-medium">Objective:</strong> Isolate stable momentum trends from non-stationary market data.</p>
+            <p>Researched momentum strategies for S&P 100 stocks over a 10-year horizon. Applied Empirical Mode Decomposition (EMD) to filter noise and isolate alpha-generating signals.</p>
+            <p>Validated alpha robustness using bootstrap inference and rigorous statistical hypothesis testing, logging outperformance in Sharpe and Calmar ratios across multi-regime environments.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Skill Matrix -->
+  <section id="matrix" class="py-24 bg-slate-50 dark:bg-quant-dark transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-12 animate-on-scroll">
+        <i data-lucide="layers" class="w-8 h-8 text-quant-accent"></i>
+        <h2 class="text-3xl font-bold">Skill Matrix</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 animate-on-scroll">
+        <!-- AI/Deep Learning -->
+        <div class="bg-white dark:bg-quant-black border border-slate-200 dark:border-quant-border p-6 rounded-xl hover:-translate-y-1 transition-transform">
+          <i data-lucide="brain-circuit" class="w-6 h-6 text-quant-accent mb-4"></i>
+          <h3 class="text-lg font-bold mb-4">AI & Architectures</h3>
+          <ul class="space-y-3 font-mono text-sm text-slate-600 dark:text-quant-muted">
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> PyTorch / TensorFlow</li>
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> Graph Neural Networks</li>
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> Neural SDEs</li>
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> Scikit-learn / Pandas</li>
+          </ul>
+        </div>
+        
+        <!-- Mathematics & Quant -->
+        <div class="bg-white dark:bg-quant-black border border-slate-200 dark:border-quant-border p-6 rounded-xl hover:-translate-y-1 transition-transform">
+          <i data-lucide="sigma" class="w-6 h-6 text-quant-accent mb-4"></i>
+          <h3 class="text-lg font-bold mb-4">Quantitative Theory</h3>
+          <ul class="space-y-3 font-mono text-sm text-slate-600 dark:text-quant-muted">
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> Stochastic Calculus</li>
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> HJB Optimal Control</li>
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> Signal Processing (EMD)</li>
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> Differential Geometry</li>
+          </ul>
+        </div>
+
+        <!-- Infrastructure -->
+        <div class="bg-white dark:bg-quant-black border border-slate-200 dark:border-quant-border p-6 rounded-xl hover:-translate-y-1 transition-transform">
+          <i data-lucide="database" class="w-6 h-6 text-quant-accent mb-4"></i>
+          <h3 class="text-lg font-bold mb-4">Infrastructure & Systems</h3>
+          <ul class="space-y-3 font-mono text-sm text-slate-600 dark:text-quant-muted">
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> Python / C++</li>
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> SQL & ArcticDB</li>
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> MATLAB / R</li>
+            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3 text-quant-accent"></i> Vectorized Backtesting</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Timeline -->
+  <section id="experience" class="py-24 border-t border-slate-200 dark:border-quant-border bg-white dark:bg-quant-black transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-12 animate-on-scroll">
+        <i data-lucide="briefcase" class="w-8 h-8 text-quant-accent"></i>
+        <h2 class="text-3xl font-bold">Professional Experience</h2>
+      </div>
+
+      <div class="relative border-l border-slate-200 dark:border-quant-border ml-3 space-y-12 animate-on-scroll">
+        <!-- Exp 1 -->
+        <div class="relative pl-8">
+          <div class="absolute w-4 h-4 bg-white dark:bg-quant-black border-2 border-quant-accent rounded-full -left-[9px] top-1"></div>
+          <p class="text-slate-500 dark:text-quant-muted text-sm font-mono font-semibold mb-1">Summer 2024</p>
+          <h4 class="font-bold text-xl text-slate-900 dark:text-white">Business Operations Intern</h4>
+          <p class="text-quant-accent font-mono text-sm mb-3">Beijing Taoyou Tianxia Technology</p>
+          <p class="text-slate-600 dark:text-quant-muted text-sm leading-relaxed max-w-3xl">
+            Executed cross-dimensional SQL analysis on massive-scale user behavior data. Generated statistical insights to optimize advertising effectiveness and inform operational decision-making frameworks.
+          </p>
+        </div>
+
+        <!-- Education Recap -->
+        <div class="relative pl-8">
+          <div class="absolute w-4 h-4 bg-slate-200 dark:bg-quant-border rounded-full -left-[9px] top-1"></div>
+          <p class="text-slate-500 dark:text-quant-muted text-sm font-mono font-semibold mb-1">Expected May 2026</p>
+          <h4 class="font-bold text-xl text-slate-900 dark:text-white">The Chinese University of Hong Kong</h4>
+          <p class="text-quant-accent font-mono text-sm mb-3">BS in Mathematics & Physics (Double Major)</p>
+          <p class="text-slate-600 dark:text-quant-muted text-sm leading-relaxed max-w-3xl italic">
+            Honors: First Prize (Twice), Huaxiabei National Mathematics Olympiad (HK District).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimalist Footer -->
+  <footer class="py-12 border-t border-slate-200 dark:border-quant-border bg-slate-50 dark:bg-quant-black transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-quant-muted font-mono">
+        <i data-lucide="terminal-square" class="w-4 h-4"></i>
+        © 2026 Ling Fung Kwan.
+      </div>
+      <div class="flex gap-6 text-sm font-mono">
+        <a href="https://linkedin.com/in/percy-kwan-431179259" target="_blank" rel="noopener" class="flex items-center gap-1 hover:text-quant-accent transition-colors">
+          <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+        </a>
+        <a href="https://github.com/percykwanlf" target="_blank" rel="noopener" class="flex items-center gap-1 hover:text-quant-accent transition-colors">
+          <i data-lucide="github" class="w-4 h-4"></i> GitHub
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Initialize Icons
+    lucide.createIcons();
+
+    // 2. Dark/Light Theme Toggle Logic
+    const htmlEl = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+    
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlEl.classList.add('dark');
+    } else {
+      htmlEl.classList.remove('dark');
+    }
+
+    themeBtn.addEventListener('click', () => {
+      htmlEl.classList.toggle('dark');
+      if (htmlEl.classList.contains('dark')) {
+        localStorage.theme = 'dark';
+      } else {
+        localStorage.theme = 'light';
+      }
+    });
+
+    // 3. KaTeX Initialization (Math Rendering)
+    document.addEventListener("DOMContentLoaded", function() {
+      const renderMath = () => {
+        if (typeof renderMathInElement === 'function') {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError : false
+          });
+        } else {
+          setTimeout(renderMath, 100); 
+        }
+      };
+      renderMath();
+    });
+
+    // 4. Scroll Animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    // 5. Smooth Scroll
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({ top: target.offsetTop - 64, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
